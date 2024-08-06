@@ -1,0 +1,38 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  application:
+    name: post
+  datasource:
+    url: jdbc:mysql://localhost:3306/post
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+        physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        default_batch_fetch_size: 500
+    database: mysql
+
+debug: true
+logging:
+  level:
+    root: DEBUG
+    org:
+      springframework:
+        security: DEBUG
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight([%-5level]) [%thread] %cyan([%logger{36}]) - %m%n"
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) ${PID:-} %clr(-){faint} [%t] %clr(%logger{15}.%-30.30M){cyan} %clr(:){faint} %m%n%wEx"
